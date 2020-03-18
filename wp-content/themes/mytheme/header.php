@@ -6,8 +6,12 @@
 	<?= wp_head();?>
 	<style type="text/css">
 		a{
+
 			padding: 10px;
 		}
+    ul li {
+      list-style-type: none;
+    }
 	</style>
 </head>
 <body>
@@ -16,10 +20,12 @@
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-4 pt-1">
-            <a class="text-muted" href="#">Subscribe</a>
+            <a class="text-muted" href="<?= bloginfo( 'url' )?>">
+              <img src="<?php bloginfo( 'template_directory' );?>/image/logo.png" width="200px;">
+            </a>
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">Large</a>
+            <a class="blog-header-logo text-dark" href="#">Welcome my website</a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
             <a class="text-muted" href="#">
@@ -31,7 +37,7 @@
       </header>
 
       <div class="nav-scroller py-1 mb-2">
-      	<nav class="navbar navbar-expand-lg navbar-light ">
+      	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
   <a class="navbar-brand" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -44,9 +50,11 @@
         		'container_class' => 'collapse navbar-collapse',
         		'container_id'    => 'navbarNav',
         		'echo'            => true,
+            'menu-class'      =>'nav navbar-nav',
         		'items_wrap'      => '<ul  class = "navbar-nav">%3$s</ul>'
       
-        	) ); ?>
+        	) );
+           ?>
    <!--  <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -73,7 +81,7 @@
         </nav> -->
       </div>
 
-      <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+      <!-- <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
           <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
           <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
@@ -112,14 +120,14 @@
         </div>
       </div>
     </div>
-
-    <!-- <main role="main" class="container">
+ -->
+  <!--   <main role="main" class="container">
       <div class="row">
         <div class="col-md-8 blog-main">
           <h3 class="pb-3 mb-4 font-italic border-bottom">
             From the Firehose
-          </h3>
- -->
+          </h3> -->
+
         
          
 <!-- 
@@ -144,7 +152,7 @@
 
         <!-- </div> --><!-- /.blog-main -->
 
-       <!--  <aside class="col-md-4 blog-sidebar">
+    <!--     <aside class="col-md-4 blog-sidebar">
           <div class="p-3 mb-3 bg-light rounded">
             <h4 class="font-italic">About</h4>
             <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
@@ -176,9 +184,8 @@
               <li><a href="#">Facebook</a></li>
             </ol>
           </div>
-        </aside> --><!-- /.blog-sidebar -->
+        </aside>  -->
 
-      </div><!-- /.row -->
-
+      <!-- </div> -->
     </main>
 
