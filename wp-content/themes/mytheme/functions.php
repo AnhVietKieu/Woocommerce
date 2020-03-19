@@ -4,6 +4,9 @@ function load_style()
 {
 	wp_register_style( 'bootstrap',  get_template_directory_uri() . '/css/bootstrap.min.css','', false, 'all' );
 	wp_enqueue_style( 'bootstrap');
+
+	wp_register_style( 'silder',  get_template_directory_uri() . '/css/style_slider.css','', false, 'all' );
+	wp_enqueue_style( 'silder');
 }
 
 add_action( 'wp_enqueue_scripts','load_style' );
@@ -12,6 +15,10 @@ function load_js()
 {
 	wp_register_script( 'js',get_template_directory_uri().'/js/bootstrap.min.js', 'jquery', false, true );
 	wp_enqueue_script( 'js');
+
+	wp_register_script( 'silderjs',get_template_directory_uri().'/js/slider.js', 'jquery', false, true );
+	wp_enqueue_script( 'silderjs');
+
 }
 
 add_action( 'wp_enqueue_scripts','load_js' );

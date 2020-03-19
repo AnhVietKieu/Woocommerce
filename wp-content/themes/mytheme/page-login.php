@@ -2,9 +2,7 @@
 <section>
 	<div class="container">
 		
-		<?= get_template_part('include/section','content');?>
+		<?= get_template_part('template/template','login');?>
 	</div>
 </section>
-
-
 <?= get_footer();?> 
