@@ -10,7 +10,10 @@
 		<?php endif;?>
 		
 		<?= get_template_part('include/section','category-content');?>
-		<?php wp_link_pages();?>
+		<div class="pagination">
+			<?php wp_link_pages();?>
+		</div>
+		
 	
 </section>
 <?= get_footer();?> 

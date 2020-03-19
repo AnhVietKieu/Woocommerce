@@ -18,6 +18,6 @@
         </b>
         <b><?php echo"-".get_the_date();?></b>
         </div> 
-       <?php comments_template();?>
+      
     
       </div>
