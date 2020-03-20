@@ -13,15 +13,22 @@
                         <div class="card-header">
                             <h3>Đăng ký</h3>
                         </div>
+                        <?php if(isset($error)){?>
+                        <div class="alert alert-danger">
+                          <?php echo $error;?>
+                            </div>
+                        <?php
+                        }?>
                         <div class="card-body">
-                            <form class="form" role="form" autocomplete="off">
+                            <form class="form" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" role="form" autocomplete="off" method="post">
                                 <div class="form-group">
+                                   <input type="hidden" name="action" value="register_form_hidden">
                                     <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="full name">
+                                    <input type="text" class="form-control" id="inputName" placeholder="full name" name="username">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" required="">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3">Password</label>

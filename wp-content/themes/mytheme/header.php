@@ -26,7 +26,7 @@
             </a>
           </div>
           <div class="col-3 text-center">
-            <a class="blog-header-logo text-dark" href="#">Welcome my website</a>
+            <a class="blog-header-logo text-dark" href="#"></a>
           </div>
           <div class="col-5 d-flex justify-content-end align-items-center">
             <input type="text"  class = "form-control"name="">
