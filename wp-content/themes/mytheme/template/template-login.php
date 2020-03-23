@@ -10,6 +10,7 @@
     <div id="login-row" class="row justify-content-center align-items-center">
         <div id="login-column" class="col-md-6">
             <div id="login-box" class="col-md-12">
+<<<<<<< HEAD
 
                 <?php
                             if (isset($_SESSION['error'] )) {
@@ -17,6 +18,8 @@
                             <p class="alert alert-danger"><?php echo $_SESSION['error']; ?></p>
                             <?php unset($_SESSION['error']); ?>
                             <?php } ?>
+=======
+>>>>>>> refs/remotes/origin/master
                 <form id="login" class="form" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" method="post">
                     <h3 class="text-center text-info">Login</h3>
                     <div class="form-group">
@@ -47,8 +50,13 @@
 </div>
 
 <!-- <script type="text/javascript">
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> refs/remotes/origin/master
 		$( "#login").submit(function(event) {
 		event.preventDefault();
 		var username = $( "input[type=text][name=username]" ).val();
@@ -70,6 +78,7 @@
 			document.getElementById('error_username').innerHTML = 'User name khong duoc de trong';
 		}
 		if(password == '')
+<<<<<<< HEAD
 		{
 			document.getElementById('error_password').innerHTML ='Password khong duoc de trong';
 		}
@@ -88,6 +97,26 @@
 	           success: function(res)
 	           {
 
+=======
+		{
+			document.getElementById('error_password').innerHTML ='Password khong duoc de trong';
+		}
+
+		
+
+		if(username != '' && password !='')
+		{
+			
+			 $.ajax({
+			 	url: endpoint,
+	           type: "POST",
+	           data: formdata, 
+	           processData :false,
+	           contentType:false,
+	           success: function(res)
+	           {
+
+>>>>>>> refs/remotes/origin/master
 	               alert(data);
 	           }
          });
