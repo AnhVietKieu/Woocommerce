@@ -6,22 +6,35 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
+
             <h2 class="text-center mb-5">Register Form</h2>
             <div class="row">
+
                 <div class="col-md-6 mx-auto">
                     <div class="card border-secondary">
                         <div class="card-header">
                             <h3>Đăng ký</h3>
                         </div>
+                    
+            <?php
+            if (isset($_SESSION['error'] )) {
+            ?>
+            <p class="alert alert-danger"><?php echo $_SESSION['error']; ?></p>
+            <?php unset($_SESSION['error']); ?>
+            <?php } ?>
+                      
                         <div class="card-body">
-                            <form class="form" role="form" autocomplete="off">
+                            <form class="form" action="<?php echo esc_url( admin_url('admin-post.php') ); ?>" role="form" autocomplete="off" method="post">
                                 <div class="form-group">
+                                   <input type="hidden" name="action" value="register_form_hidden">
                                     <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="full name">
+                                    <input type="text" class="form-control" id="inputName" placeholder="full name" name="username">
+
+
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail3">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" required="">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword3">Password</label>

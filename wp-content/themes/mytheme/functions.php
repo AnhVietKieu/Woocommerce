@@ -1,4 +1,12 @@
 <?php
+add_action('init', 'start_session', 1);
+
+
+function start_session() {
+	if(!session_id()) {
+	session_start();
+	}
+}
 	
 function load_style()
 {
@@ -118,3 +126,158 @@ add_image_size( 'blog-large',  800, 300, true);
 //  printf( '<li>%s</li>' . "\n", get_next_posts_link('Sau') );
 //  echo '</ul>' . "\n";
 // }
+
+add_action('wp_ajax_login','login_form');
+add_action( 'wp_ajax_nopriv_login','login_form');
+
+function login_form()
+{
+	global $wpdb;
+
+
+
+	$formdata =[];
+
+	wp_parse_str( $_POST['login'], $formdata );
+
+	$sql = "select * from wp_users  where user_login =%d ";
+
+	$data = $wpdb->get_row( $wpdb->prepare($sql,$formdata['username']), ARRAY_A);
+     print_r($data);
+
+	
+
+
+
+
+	// $wpdb->insert('wp_users',array('user_login' =>$formdata['username'],'user_pass' =>$formdata['password'])); 
+	// $jsi = json_encode($formdata);
+	
+	// wp_send_json_success($jsi);
+		
+}
+
+function login_fontend()
+{
+	
+	global $wpdb,$error;
+
+	$sql = "select * from wp_users where user_login =%s";
+
+	$result = $wpdb->get_row($wpdb->prepare($sql,$_POST['username']));
+
+	if(empty($result)){
+
+			$_SESSION['error'] = 'Tài khoản không tồn tại'; 
+
+			wp_redirect( 'login');
+
+	}else{
+
+
+		$form_user = array(
+				'user_login' =>$_POST['username'],
+				'user_password' =>$_POST['password']
+			);
+
+	    
+
+    	$user = wp_authenticate($form_user['user_login'],$form_user['user_password']);
+    	
+  
+	    if(!is_wp_error( $user )){
+
+	    	wp_set_current_user($user->ID);
+
+	    	$_SESSION['username'] = $user->user_login;
+
+	    	wp_redirect( 'home');
+
+
+	    }else
+	    {
+	    	$_SESSION['error'] ='Username hoặc Password không đúng';
+
+	    	wp_redirect( 'login');
+	    }
+
+   }
+     
+
+}
+
+add_action( 'admin_post_nopriv_login_form_hidden', 'login_fontend' );
+add_action( 'admin_post_login_form_hidden', 'login_fontend' );
+
+
+function validation_form()
+{
+	$errors = new WP_Error();
+
+	if ( isset( $_POST[ 'username' ] ) && $_POST[ 'username' ] !== '' ) {
+	  $errors->add( 'username', 'username khong duoc de trong' );
+	}
+	if ( isset( $_POST[ 'password' ] ) && $_POST[ 'password' ] == '' ) {
+	  $errors->add('password', 'password khong duoc de trong' );
+	}	
+
+	return $error;
+}
+
+
+function register_form() {
+	global $wpdb ,$error;
+
+	$error = validation_form();
+
+if(empty($error->$error))
+{
+
+
+	if(username_exists( $_POST['username'] ))
+	{
+		$_SESSION['error'] ='Username đã tồn tai';
+		wp_redirect( 'register');
+
+	}else{
+			if(wp_create_user( $_POST['username'],$_POST['password'], $email = '' ))
+		{
+			wp_redirect( 'login');
+		}else
+		{
+			$_SESSION['errors'] = 'An Error has occured';
+		}
+	}
+
+	
+
+
+}
+ 
+
+return $errors;
+}
+
+// Use your hidden "action" field value when adding the actions
+add_action( 'admin_post_nopriv_register_form_hidden', 'register_form' );
+add_action( 'admin_post_register_form_hidden', 'register_form' );
+
+
+add_action('wp_login','login_fontend');
+
+function end_session() {
+	
+	session_destroy();
+	wp_redirect( get_home_url());
+
+	exit();
+}
+
+add_action('wp_logout','end_session');
+
+
+function mytheme_add_woocommerce_support() {
+	add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+
